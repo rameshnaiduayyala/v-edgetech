@@ -1,0 +1,12 @@
+/* tailwind.css or global.css */
+.bg-btn-glowing {
+  background: radial-gradient(50% 50% at 50% 50%, #80d0ff 0%, #3b82f6 100%);
+}
+
+.bg-btn-glowing-inset {
+  background: linear-gradient(145deg, #00bcd4 0%, #2196f3 100%);
+}
+
+.bg-btn-glowing-inset-hover {
+  background: linear-gradient(145deg, #2196f3 0%, #00bcd4 100%);
+}
