@@ -9,38 +9,39 @@ import manufacturingImg from '@/assets/industries/manufacturing.jpg'
 
 const industries = [
   {
-    title: 'Logistics',
+    title: "Logistics & Supply Chain",
     description:
-      'Supply chain intelligence, route optimization, and predictive fleet analytics.',
+      "Route optimization, fleet intelligence, and real-time supply chain visibility at global scale.",
     image: logisticsImg,
-    slug: 'logistics',
-    tags: ['Optimization', 'Cloud AI'],
+    slug: "logistics",
+    tags: ["Optimization", "Cloud Analytics"],
   },
   {
-    title: 'Healthcare',
+    title: "Healthcare & Life Sciences",
     description:
-      'AI-assisted diagnostics, imaging automation, and patient risk analytics.',
+      "AI-driven imaging analysis, clinical decision support, and operational intelligence for healthcare systems.",
     image: healthcareImg,
-    slug: 'healthcare',
-    tags: ['Imaging', 'Edge AI'],
+    slug: "healthcare",
+    tags: ["Medical Imaging", "AI Analytics"],
   },
   {
-    title: 'Finance',
+    title: "Financial Services",
     description:
-      'Fraud detection, risk modeling, and intelligent customer platforms.',
+      "Risk modeling, fraud detection, and data-driven customer intelligence for modern financial platforms.",
     image: financeImg,
-    slug: 'finance',
-    tags: ['Security', 'Data'],
+    slug: "finance",
+    tags: ["Risk & Compliance", "Data Platforms"],
   },
   {
-    title: 'Manufacturing',
+    title: "Manufacturing & Industrial",
     description:
-      'Automated quality inspection and predictive maintenance systems.',
+      "Predictive maintenance, quality inspection, and production intelligence powered by AI.",
     image: manufacturingImg,
-    slug: 'manufacturing',
-    tags: ['Automation', 'Edge AI'],
+    slug: "manufacturing",
+    tags: ["Industrial AI", "Automation"],
   },
-]
+];
+
 
 const IndustryCard = ({
   title,

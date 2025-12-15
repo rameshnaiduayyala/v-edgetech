@@ -8,7 +8,8 @@ import { GlowEffect } from '@/motion-primitives/glow-effect'
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden pt-24 md:pt-32">
+    <section className="relative min-h-screen w-full overflow-hidden pt-32">
+
       <img
         src={bg}
         alt="Background"

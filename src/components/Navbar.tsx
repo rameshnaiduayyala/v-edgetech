@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   ChevronDown,
   Moon,
@@ -15,9 +15,24 @@ const Navbar: React.FC = () => {
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
+  const [scrolled, setScrolled] = useState(false)
+
+
+  useEffect(() => {
+  const onScroll = () => setScrolled(window.scrollY > 40)
+  window.addEventListener('scroll', onScroll)
+  return () => window.removeEventListener('scroll', onScroll)
+}, [])
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-zinc-950 border-b border-neutral-200 dark:border-neutral-800">
+<header
+  className={`
+    fixed top-0 left-0 w-full z-50 transition-all duration-300
+    ${scrolled
+      ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-white/10'
+      : 'bg-transparent'}
+  `}
+>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         <a href="/" className="flex items-center">
