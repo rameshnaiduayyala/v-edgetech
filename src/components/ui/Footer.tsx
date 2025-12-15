@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                   href="mailto:ayyalarameshnaidu@gmail.com"
                   className="hover:text-neutral-900 dark:hover:text-white transition"
                 >
-                  ayyalarameshnaidu@gmail.com
+                  contact@v-edgetech.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
