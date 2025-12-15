@@ -1,74 +1,106 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { UploadCloud, Activity, Zap } from 'lucide-react';
+import React from 'react'
+import { motion } from 'framer-motion'
+import { UploadCloud, Activity, Zap } from 'lucide-react'
 
 const steps = [
   {
-    icon: <UploadCloud size={36} className="text-cyan-400" />,
-    title: '1. Upload',
-    desc: 'Stream or upload visual data from edge devices, cameras, or cloud storage sources.',
+    step: '01',
+    icon: UploadCloud,
+    title: 'Upload',
+    desc: 'Securely stream or upload visual data from edge devices, cameras, or cloud sources.',
   },
   {
-    icon: <Activity size={36} className="text-purple-400" />,
-    title: '2. Analyze',
-    desc: 'Process the data using powerful AI models for detection, classification, and insights.',
+    step: '02',
+    icon: Activity,
+    title: 'Analyze',
+    desc: 'Process data using production-grade AI models for detection, classification, and insights.',
   },
   {
-    icon: <Zap size={36} className="text-green-400" />,
-    title: '3. Act',
-    desc: 'Trigger alerts, control systems, or visualize dashboards in real-time.',
+    step: '03',
+    icon: Zap,
+    title: 'Act',
+    desc: 'Trigger alerts, automate workflows, or surface intelligence in real time.',
   },
-];
+]
 
 const HowItWorks: React.FC = () => {
   return (
-    <section id="how-it-works" className="relative py-24 px-6 bg-white/70 dark:bg-zinc-950/70 text-neutral-800 dark:text-white transition-colors duration-300 overflow-hidden">
-      {/* Heading */}
-      <div className="text-center mb-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-amber-400">How It Works</h2>
-        <p className="max-w-2xl mx-auto mt-4 text-lg text-neutral-600 dark:text-neutral-300">
-          A seamless 3-step pipeline to empower your systems with real-time AI vision.
-        </p>
-      </div>
+    <section
+      id="how-it-works"
+      className="bg-white dark:bg-zinc-950 py-32 px-6 border-t border-neutral-200 dark:border-neutral-800"
+    >
+      <div className="max-w-7xl mx-auto">
 
-      {/* Timeline */}
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-3 gap-12 relative">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.3, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="relative bg-white/70 dark:bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-xl transition-all"
-            >
-              <div className="mb-4">{step.icon}</div>
-              <h3 className="text-xl font-semibold text-blue-900 dark:text-white mb-2">
-                {step.title}
-              </h3>
-              <p className="text-sm text-neutral-700 dark:text-neutral-400 leading-relaxed">
-                {step.desc}
-              </p>
+        {/* Header */}
+        <div className="max-w-3xl mb-20">
+          <p className="text-sm uppercase tracking-widest text-neutral-500 mb-4">
+            How it works
+          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-white leading-tight">
+            From data to action,<br />in three steps
+          </h2>
+          <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400">
+            A simple, reliable pipeline designed for real-world AI deployment
+            across edge and cloud environments.
+          </p>
+        </div>
 
-              {/* Line Connector */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 right-[-35px] w-[70px] h-[2px] bg-gradient-to-r from-cyan-400 to-green-400"></div>
-              )}
-            </motion.div>
-          ))}
+        {/* Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
+
+          {/* Connector line */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-neutral-200 dark:bg-neutral-800" />
+
+          {steps.map((step, index) => {
+            const Icon = step.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+                viewport={{ once: true }}
+                className="
+                  relative z-10
+                  bg-white dark:bg-zinc-950
+                  border border-neutral-200 dark:border-neutral-800
+                  rounded-xl
+                  p-8
+                  hover:border-neutral-400 dark:hover:border-neutral-600
+                  transition
+                "
+              >
+                {/* Step number */}
+                <div className="text-sm font-medium text-neutral-500 mb-6">
+                  {step.step}
+                </div>
+
+                {/* Icon */}
+                <Icon
+                  size={26}
+                  strokeWidth={1.5}
+                  className="text-cyan-600 mb-5"
+                />
+
+                {/* Title */}
+                <h3 className="text-xl font-medium text-neutral-900 dark:text-white mb-3">
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  {step.desc}
+                </p>
+
+                {/* Divider */}
+                <div className="mt-6 h-px w-10 bg-neutral-200 dark:bg-neutral-800" />
+              </motion.div>
+            )
+          })}
         </div>
       </div>
-
-      {/* Glowing background */}
-      <motion.div
-        className="absolute top-0 left-1/2 w-[500px] h-[500px] bg-cyan-300/20 blur-3xl rounded-full -z-10 transform -translate-x-1/2"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-      />
     </section>
-  );
-};
+  )
+}
 
-export default HowItWorks;
+export default HowItWorks

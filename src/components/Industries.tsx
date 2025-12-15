@@ -1,146 +1,163 @@
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
+import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
-import logisticsImg from '@/assets/industries/logistics.jpg';
-import healthcareImg from '@/assets/industries/healthcare.jpg';
-import financeImg from '@/assets/industries/finance.jpg';
-import manufacturingImg from '@/assets/industries/manufacturing.jpg';
+import logisticsImg from '@/assets/industries/logistics.jpg'
+import healthcareImg from '@/assets/industries/healthcare.jpg'
+import financeImg from '@/assets/industries/finance.jpg'
+import manufacturingImg from '@/assets/industries/manufacturing.jpg'
 
 const industries = [
   {
     title: 'Logistics',
-    description: 'AI-powered supply chain, route optimization, and predictive fleet intelligence.',
+    description:
+      'Supply chain intelligence, route optimization, and predictive fleet analytics.',
     image: logisticsImg,
     slug: 'logistics',
-    tags: ['AI', 'Cloud', 'Optimization'],
+    tags: ['Optimization', 'Cloud AI'],
   },
   {
     title: 'Healthcare',
-    description: 'Smart diagnostics, imaging automation, and predictive patient analytics.',
+    description:
+      'AI-assisted diagnostics, imaging automation, and patient risk analytics.',
     image: healthcareImg,
     slug: 'healthcare',
-    tags: ['AI', 'Edge', 'Imaging'],
+    tags: ['Imaging', 'Edge AI'],
   },
   {
     title: 'Finance',
-    description: 'Real-time fraud detection, risk modeling, and smart customer experiences.',
+    description:
+      'Fraud detection, risk modeling, and intelligent customer platforms.',
     image: financeImg,
     slug: 'finance',
-    tags: ['AI', 'Security', 'Data'],
+    tags: ['Security', 'Data'],
   },
   {
     title: 'Manufacturing',
-    description: 'Automated QA, anomaly detection, and predictive maintenance at scale.',
+    description:
+      'Automated quality inspection and predictive maintenance systems.',
     image: manufacturingImg,
     slug: 'manufacturing',
-    tags: ['AI', 'Automation', 'Edge'],
+    tags: ['Automation', 'Edge AI'],
   },
-];
+]
 
-const IndustryCard = ({ title, description, image, index, slug ,tags}: { title: string; description: string; image: string; index: number; slug: string ;tags?: string[]}) => (
+const IndustryCard = ({
+  title,
+  description,
+  image,
+  index,
+  slug,
+  tags,
+}: {
+  title: string
+  description: string
+  image: string
+  index: number
+  slug: string
+  tags?: string[]
+}) => (
   <motion.div
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 16 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.2 }}
+    transition={{ duration: 0.4, delay: index * 0.05 }}
     viewport={{ once: true }}
   >
-    <Link to={`/case-studies/${slug}`} className="group block">
-      <Card className="relative overflow-hidden rounded-2xl border border-white/10 bg-transparent shadow-lg hover:shadow-xl transition-all">
-        <div className="relative h-64 w-full">
+    <Link to={`/case-studies/${slug}`} className="group block h-full">
+      <div
+        className="
+          h-full bg-white dark:bg-zinc-950
+          border border-neutral-200 dark:border-neutral-800
+          rounded-xl overflow-hidden
+          transition
+          hover:border-neutral-400 dark:hover:border-neutral-600
+        "
+      >
+        {/* Image */}
+        <div className="h-44 w-full overflow-hidden">
           <img
-            src={`${image}?w=800&auto=format&fit=crop`}
+            src={image}
             alt={title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
-        </div>
-        {/* Tag Badges */}
-        <div className="absolute top-4 left-4 z-30 flex flex-wrap gap-2">
-          {tags?.map((tag: string, i: number) => (
-            <span
-              key={i}
-              className="text-xs px-2 py-0.5 bg-white/10 border border-white/20 text-white backdrop-blur-sm rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
         </div>
 
-        <CardContent className="relative z-20 p-6 text-white">
-          <h3 className="text-xl font-semibold text-blue-900 dark:text-amber-400">{title}</h3>
-          <p className="text-sm mt-2 text-zinc-900 dark:text-white">{description}</p>
-        </CardContent>
-      </Card>
+        {/* Content */}
+        <div className="p-6">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {tags?.map((tag, i) => (
+              <span
+                key={i}
+                className="
+                  text-[11px] uppercase tracking-wide
+                  px-2 py-1
+                  border border-neutral-200 dark:border-neutral-700
+                  text-neutral-500 dark:text-neutral-400
+                "
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Title */}
+          <h3 className="text-xl font-medium text-neutral-900 dark:text-white mb-3">
+            {title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            {description}
+          </p>
+
+          {/* Divider */}
+          <div className="mt-6 h-px w-10 bg-neutral-200 dark:bg-neutral-800" />
+        </div>
+      </div>
     </Link>
   </motion.div>
-);
+)
 
 const Industries = () => {
-  const ref = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  const yTop = useSpring(useTransform(scrollYProgress, [0, 1], [-100, 100]), {
-    stiffness: 40,
-    damping: 20,
-  });
-
-  const yBottom = useSpring(useTransform(scrollYProgress, [0, 1], [100, -100]), {
-    stiffness: 40,
-    damping: 20,
-  });
+  const ref = useRef(null)
 
   return (
     <section
       ref={ref}
       id="industries"
-      className="relative bg-white/70 dark:bg-zinc-950/70 py-24 px-6 overflow-hidden transition-colors duration-300"
+      className="bg-white dark:bg-zinc-950 py-32 px-6 border-t border-neutral-200 dark:border-neutral-800"
     >
-      {/* Animated Blobs */}
-      <motion.div
-        style={{ y: yTop }}
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
-                   bg-gradient-radial from-cyan-300/20 to-transparent rounded-full blur-3xl z-0"
-      />
-      <motion.div
-        style={{ y: yBottom }}
-        className="absolute bottom-0 right-0 w-[300px] h-[300px] 
-                   bg-gradient-radial from-pink-300/20 to-transparent rounded-full blur-2xl z-0"
-      />
+      <div className="max-w-7xl mx-auto">
 
-      {/* Section Heading */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white"
-        >
-          Intelligent AI for Every Industry
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-neutral-600 dark:text-neutral-400 text-lg mt-4"
-        >
-          From logistics to healthcare, Gazzee brings smart automation and real-time analytics.
-        </motion.p>
-      </div>
+        {/* Header */}
+        <div className="grid grid-cols-12 gap-6 mb-20">
+          <div className="col-span-12 md:col-span-5">
+            <p className="text-sm uppercase tracking-widest text-neutral-500 mb-4">
+              Industries
+            </p>
+            <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-white leading-tight">
+              AI solutions<br />across key sectors
+            </h2>
+          </div>
 
-      {/* Industry Grid */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {industries.map((industry, index) => (
-          <IndustryCard key={index} {...industry} index={index} />
-        ))}
+          <div className="col-span-12 md:col-span-6 md:col-start-7">
+            <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              We work across industries where accuracy, reliability, and scalability
+              are critical to business outcomes.
+            </p>
+          </div>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {industries.map((industry, index) => (
+            <IndustryCard key={index} {...industry} index={index} />
+          ))}
+        </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Industries;
+export default Industries

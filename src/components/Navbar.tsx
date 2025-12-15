@@ -1,121 +1,162 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   ChevronDown,
   Moon,
   Sun,
   Menu,
   X,
-} from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
-import MegaMenu from './MegaMenu';
-import { useTheme } from '@/provider/useTheme';
-import Logo from "/assets/v edge tech.png"
+} from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import MegaMenu from './MegaMenu'
+import { useTheme } from '@/provider/useTheme'
+import Logo from '/assets/v edge tech.png'
 
 const Navbar: React.FC = () => {
-  const [megaOpen, setMegaOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const [megaOpen, setMegaOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 border-neutral-200 backdrop-blur-lg shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <a href="/" className="flex items-center space-x-2">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="h-12 w-auto object-contain dark:brightness-200"
-          />
+    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-zinc-950 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        <a href="/" className="flex items-center">
+          <div className="bg-neutral-900/95 dark:bg-transparent rounded-md px-2 py-1">
+
+            <img
+              src={Logo}
+              alt="Vertical Edge"
+              className="h-10 w-auto"
+            />
+          </div>
         </a>
-        <nav className="hidden md:flex items-center space-x-10 text-sm font-medium text-white dark:text-neutral-300">
-          <a href="#hero" className="hover:text-blue-500 dark:hover:text-cyan-400 transition-colors">Home</a>
-          <a href="#services" className="hover:text-blue-500 dark:hover:text-cyan-400 transition-colors">What We Do</a>
+
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <a
+            href="#hero"
+            className="hover:text-neutral-900 dark:hover:text-white transition"
+          >
+            Home
+          </a>
+
+          <a
+            href="#services"
+            className="hover:text-neutral-900 dark:hover:text-white transition"
+          >
+            Services
+          </a>
+
+          {/* Mega Menu */}
           <div
             className="relative"
             onMouseEnter={() => setMegaOpen(true)}
             onMouseLeave={() => setMegaOpen(false)}
           >
-            <button className="flex items-center hover:text-blue-500 dark:hover:text-cyan-400 transition-colors">
-              Solutions <ChevronDown size={18} className="ml-1" />
+            <button
+              className="flex items-center gap-1 hover:text-neutral-900 dark:hover:text-white transition"
+            >
+              Solutions
+              <ChevronDown size={16} />
             </button>
+
             <AnimatePresence>
               {megaOpen && <MegaMenu />}
             </AnimatePresence>
           </div>
-          <a href="#usecases" className="hover:text-blue-500 dark:hover:text-cyan-400 transition-colors">Our use cases</a>
-          <a href="#contact" className="hover:text-blue-500 dark:hover:text-cyan-400 transition-colors">Contact</a>
+
+          <a
+            href="#industries"
+            className="hover:text-neutral-900 dark:hover:text-white transition"
+          >
+            Industries
+          </a>
+
+          <a
+            href="#contact"
+            className="hover:text-neutral-900 dark:hover:text-white transition"
+          >
+            Contact
+          </a>
+
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full border border-black/10 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition"
             aria-label="Toggle theme"
+            className="
+              ml-2 p-2 rounded-md
+              border border-neutral-300 dark:border-neutral-700
+              hover:border-neutral-500 transition
+            "
           >
             {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-yellow-300" />
+              <Sun size={16} className="text-neutral-300" />
             ) : (
-              <Moon className="w-5 h-5 text-blue-600" />
+              <Moon size={16} className="text-neutral-700" />
             )}
           </button>
         </nav>
 
-        {/* Mobile Toggle Buttons */}
+        {/* Mobile Controls */}
         <div className="md:hidden flex items-center gap-3">
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full border border-black/10 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition"
             aria-label="Toggle theme"
+            className="p-2 rounded-md border border-neutral-300 dark:border-neutral-700"
           >
             {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-yellow-300" />
+              <Sun size={16} className="text-neutral-300" />
             ) : (
-              <Moon className="w-5 h-5 text-blue-600" />
+              <Moon size={16} className="text-neutral-700" />
             )}
           </button>
 
-          {/* Menu Toggle */}
           <button
             onClick={() => setMobileOpen(true)}
-            className="p-2 rounded-md border border-black/10 dark:border-white/20 text-neutral-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition"
             aria-label="Open menu"
+            className="p-2 rounded-md border border-neutral-300 dark:border-neutral-700"
           >
-            <Menu />
+            <Menu size={18} />
           </button>
         </div>
       </div>
 
-      {/* Slide-in Drawer Menu */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/50 z-40"
+              className="fixed inset-0 bg-black/40 z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileOpen(false)}
             />
-            {/* Drawer */}
+
             <motion.div
-              className="fixed top-0 right-0 w-3/4 max-w-sm h-full bg-white dark:bg-black z-50 p-6 shadow-lg flex flex-col"
+              className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-zinc-950 z-50 p-6 border-l border-neutral-200 dark:border-neutral-800"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'tween' }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-lg font-bold text-neutral-900 dark:text-white">Menu</h2>
+              <div className="flex items-center justify-between mb-8">
+                <span className="text-sm font-semibold text-neutral-900 dark:text-white">
+                  Menu
+                </span>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-md border border-black/10 dark:border-white/20"
+                  className="p-2 border border-neutral-300 dark:border-neutral-700 rounded-md"
                 >
-                  <X />
+                  <X size={16} />
                 </button>
               </div>
-              <nav className="flex flex-col gap-4 text-sm font-medium text-neutral-800 dark:text-neutral-200">
+
+              <nav className="flex flex-col gap-6 text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 <a href="#hero" onClick={() => setMobileOpen(false)}>Home</a>
-                <a href="#services" onClick={() => setMobileOpen(false)}>What We Do</a>
-                <a href="#usecases" onClick={() => setMobileOpen(false)}>Our use cases</a>
+                <a href="#services" onClick={() => setMobileOpen(false)}>Services</a>
+                <a href="#industries" onClick={() => setMobileOpen(false)}>Industries</a>
                 <a href="#contact" onClick={() => setMobileOpen(false)}>Contact</a>
               </nav>
             </motion.div>
@@ -123,7 +164,7 @@ const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

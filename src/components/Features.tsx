@@ -1,66 +1,109 @@
-import React from 'react';
-import { Camera, Eye, Activity, LayoutGrid, BarChart, Cpu } from 'lucide-react';
+import React from 'react'
+import { Camera, Eye, Activity, LayoutGrid, BarChart, Cpu } from 'lucide-react'
 
 const features = [
   {
-    icon: <Eye size={28} className="text-cyan-400" />,
-    title: 'Real-Time Object Detection',
-    desc: 'Instantly recognize and track objects using high-performance AI models.'
+    icon: Eye,
+    title: 'Real-time object detection',
+    desc: 'Detect and track objects instantly using production-grade AI models.',
   },
   {
-    icon: <Camera size={28} className="text-cyan-400" />,
-    title: 'Multi-Camera Integration',
-    desc: 'Seamlessly integrate feeds from multiple IP or edge cameras in one dashboard.'
+    icon: Camera,
+    title: 'Multi-camera integration',
+    desc: 'Unify feeds from IP and edge cameras into a single operational view.',
   },
   {
-    icon: <Activity size={28} className="text-cyan-400" />,
-    title: 'Edge AI Inference',
-    desc: 'Deploy AI models on edge devices for real-time decision-making at the source.'
+    icon: Activity,
+    title: 'Edge AI inference',
+    desc: 'Run AI models directly on edge devices for low-latency decisions.',
   },
   {
-    icon: <BarChart size={28} className="text-cyan-400" />,
-    title: 'Live Analytics Dashboard',
-    desc: 'Monitor performance metrics, heatmaps, and activity timelines in real time.'
+    icon: BarChart,
+    title: 'Live analytics dashboards',
+    desc: 'Monitor KPIs, heatmaps, and system activity in real time.',
   },
   {
-    icon: <LayoutGrid size={28} className="text-cyan-400" />,
-    title: 'Modular Architecture',
-    desc: 'Flexible plug-and-play system components for custom industrial needs.'
+    icon: LayoutGrid,
+    title: 'Modular architecture',
+    desc: 'Composable system design to adapt quickly to industrial requirements.',
   },
   {
-    icon: <Cpu size={28} className="text-cyan-400" />,
-    title: 'Cloud Sync & Control',
-    desc: 'Remotely manage, update, and sync devices through a secure cloud portal.'
+    icon: Cpu,
+    title: 'Cloud sync & control',
+    desc: 'Securely manage, update, and monitor devices from a central cloud portal.',
   },
-];
+]
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="py-24 px-6 mx-auto bg-white/70 dark:bg-zinc-950/70 transition-colors duration-500">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-900 dark:text-white">
-          Platform Capabilities
-        </h2>
-        <p className="text-blue-900 dark:text-neutral-400 max-w-2xl mx-auto">
-          Powerful AI features designed to elevate your industrial automation, surveillance, and insights.
-        </p>
-      </div>
+    <section
+      id="features"
+      className="bg-white dark:bg-zinc-950 py-32 px-6"
+    >
+      <div className="max-w-7xl mx-auto">
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {features.map((f, i) => (
-          <div
-            key={i}
-            className="p-6 bg-teal-900/90 dark:bg-slate-800/60 border border-white/10 
-                       rounded-2xl backdrop-blur-xl hover:shadow-xl transition duration-300"
-          >
-            <div className="mb-3">{f.icon}</div>
-            <h3 className="text-lg font-semibold text-white dark:text-white mb-2">{f.title}</h3>
-            <p className="text-sm text-white/80 dark:text-neutral-300 leading-relaxed">{f.desc}</p>
-          </div>
-        ))}
+        {/* Header */}
+        <div className="max-w-3xl mb-20">
+          <p className="text-sm uppercase tracking-widest text-neutral-500 mb-4">
+            Platform capabilities
+          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-white mb-6">
+            Built for real-world AI deployment
+          </h2>
+          <p className="text-lg text-neutral-600 dark:text-neutral-400">
+            A robust, scalable platform designed for industrial automation,
+            computer vision, and real-time intelligence.
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {features.map((f, i) => {
+            const Icon = f.icon
+            return (
+              <div
+                key={i}
+                role="article"
+                tabIndex={0}
+                className="
+                  h-full
+                  bg-white dark:bg-zinc-950
+                  border border-neutral-200 dark:border-neutral-800
+                  rounded-xl
+                  p-8
+                  transition
+                  hover:bg-neutral-50 dark:hover:bg-zinc-900/40
+                  hover:border-neutral-400 dark:hover:border-neutral-600
+                  focus:outline-none
+                  focus:ring-2 focus:ring-cyan-600/30
+                "
+              >
+                {/* Icon */}
+                <Icon
+                  size={26}
+                  strokeWidth={1.5}
+                  className="text-cyan-600 mb-5"
+                />
+
+                {/* Title */}
+                <h3 className="text-xl font-medium text-neutral-900 dark:text-white mb-3">
+                  {f.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  {f.desc}
+                </p>
+
+                {/* Divider */}
+                <div className="mt-6 h-px w-10 bg-neutral-200 dark:bg-neutral-800" />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features

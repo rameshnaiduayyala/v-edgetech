@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
 
           {/* Subtext */}
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-zinc-700 dark:text-zinc-300 max-w-xl mt-6 leading-relaxed tracking-tight"
+            className="text-base sm:text-lg md:text-xl text-emerald-200 dark:text-zinc-300 max-w-xl mt-6 leading-relaxed tracking-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
           {/* Image with animated float */}
           <motion.div
             className="relative z-10"
-            animate={{ opacity: 1, scale: 1, y: [0, -10, 0, -5, 0] }}
+            // animate={{ opacity: 1, scale: 1, y: [0, -10, 0, -5, 0] }}
             transition={{
               duration: 2,
               delay: 0.3,

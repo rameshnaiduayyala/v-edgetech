@@ -1,103 +1,108 @@
-import React from 'react';
-import {
-  Bot,
-  Brain,
-  Cloud,
-  Cpu,
-  Settings,
-  ShieldCheck,
-} from 'lucide-react';
-import { motion } from 'framer-motion';
-import bg from "/assets/bg-2.svg";
+import React from 'react'
+import { Bot, Brain, Cloud, Cpu, Settings, ShieldCheck } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const services = [
   {
-    icon: <Bot size={36} className="text-cyan-500" />,
+    icon: Bot,
     title: 'AI Development',
-    desc: 'Custom AI models, vision systems, and predictive analytics for industrial needs.',
+    desc: 'Custom AI models, vision systems, and predictive analytics for industrial use cases.',
   },
   {
-    icon: <Brain size={36} className="text-cyan-500" />,
+    icon: Brain,
     title: 'Gen AI Integration',
-    desc: 'Utilize Large Language Models for automation, insights, and enterprise transformation.',
+    desc: 'Enterprise-grade LLM integrations for automation, decision support, and insights.',
   },
   {
-    icon: <Cloud size={36} className="text-cyan-500" />,
+    icon: Cloud,
     title: 'Cloud & Edge AI',
-    desc: 'Deploy AI to cloud-native platforms or edge devices for real-time inference.',
+    desc: 'Scalable AI deployment across cloud-native and edge computing environments.',
   },
   {
-    icon: <Cpu size={36} className="text-cyan-500" />,
+    icon: Cpu,
     title: 'Embedded Systems',
-    desc: 'Run optimized AI on Jetson, Coral, Raspberry Pi, and other hardware devices.',
+    desc: 'Optimized AI pipelines for Jetson, Coral, Raspberry Pi, and custom hardware.',
   },
   {
-    icon: <Settings size={36} className="text-cyan-500" />,
+    icon: Settings,
     title: 'Automation & Control',
-    desc: 'Integrate AI with PLCs, robotics, and industrial automation systems.',
+    desc: 'AI-driven control systems integrated with PLCs, robotics, and factory automation.',
   },
   {
-    icon: <ShieldCheck size={36} className="text-cyan-500" />,
+    icon: ShieldCheck,
     title: 'Security & Surveillance',
-    desc: 'Use AI for threat detection, access control, and compliance in smart environments.',
+    desc: 'Computer vision–based access control, monitoring, and compliance solutions.',
   },
-];
+]
 
 const Services: React.FC = () => {
   return (
-
-    <motion.section
+    <section
       id="services"
-      className="relative w-full py-24 overflow-hidden bg-white dark:bg-zinc-950/80"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
+      className="bg-white dark:bg-zinc-950 py-32 px-6"
     >
-      <div className="absolute top-0 left-1/2 w-full h-[1px] -translate-x-1/2 bg-gradient-to-r from-white via-gray-400 to-white opacity-60" />
+      <div className="max-w-7xl mx-auto">
 
-      {/* Background Image */}
-      <img
-        src={bg}
-        alt="Decorative AI pattern background"
-        className="absolute inset-0 w-full h-full opacity-70 object-cover pointer-events-none z-0"
-      />
+        {/* Header */}
+        <div className="max-w-3xl mb-20">
+          <p className="text-sm uppercase tracking-widest text-neutral-500 mb-4">
+            Services
+          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-white leading-tight">
+            Precision-built AI systems<br />for real-world industry
+          </h2>
+          <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400">
+            We design and deploy robust AI solutions with a strong focus on reliability,
+            performance, and long-term scalability.
+          </p>
+        </div>
 
-      {/* Heading */}
-      <div className="relative z-10 text-center mb-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-amber-400 tracking-tight">
-          What We Do
-        </h2>
-        <p className="text-neutral-800 dark:text-neutral-300 max-w-2xl mx-auto mt-4 text-lg">
-          We build intelligent computer vision and AI systems tailored for global industry.
-        </p>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {services.map((service, index) => {
+            const Icon = service.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="
+                  bg-white dark:bg-zinc-950
+                  border border-neutral-200 dark:border-neutral-800
+                  rounded-xl
+                  p-8
+                  hover:border-neutral-400 dark:hover:border-neutral-600
+                  transition
+                "
+              >
+                {/* Icon */}
+                <Icon
+                  size={28}
+                  strokeWidth={1.5}
+                  className="text-cyan-600 mb-6"
+                />
+
+                {/* Title */}
+                <h3 className="text-xl font-medium text-neutral-900 dark:text-white mb-3">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  {service.desc}
+                </p>
+
+                {/* Divider */}
+                <div className="mt-6 h-px w-10 bg-neutral-200 dark:bg-neutral-800" />
+              </motion.div>
+            )
+          })}
+        </div>
       </div>
+    </section>
+  )
+}
 
-      {/* Services Grid */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto px-6">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            className="p-6 bg-white/80 dark:bg-white/10 border border-neutral-200 dark:border-white/10 
-              rounded-2xl shadow-md hover:shadow-cyan-800/40 transition-all hover:-translate-y-1 backdrop-blur-xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            aria-label={service.title}
-          >
-            <div className="mb-4">{service.icon}</div>
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-              {service.title}
-            </h3>
-            <p className="text-sm text-neutral-700 dark:text-neutral-400 leading-relaxed">
-              {service.desc}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-    </motion.section>
-  );
-};
-
-export default Services;
+export default Services

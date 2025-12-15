@@ -5,38 +5,61 @@ import { motion } from 'framer-motion'
 
 const MegaMenu: React.FC = () => {
   return (
-   <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  exit={{ opacity: 0, y: 20 }}
-  transition={{ duration: 0.2 }}
-  className="absolute right-0 top-full mt-4 w-[520px] max-w-[95vw] grid grid-cols-2 gap-6 p-4 bg-black/50 border border-white/10 rounded-2xl shadow-2xl backdrop-blur-md z-50"
->
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.2 }}
+      className="
+        absolute right-0 top-full mt-4
+        w-[520px] max-w-[95vw]
+        grid grid-cols-2 gap-8
+        bg-white dark:bg-zinc-950
+        border border-neutral-200 dark:border-neutral-800
+        rounded-xl
+        p-6
+        shadow-lg
+        z-50
+      "
+    >
+      {/* Capabilities */}
       <div>
-        <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wide">Capabilities</h4>
-        <ul className="space-y-3 text-white/80 text-sm">
-          <li className="flex items-center gap-3 hover:text-cyan-400 transition">
-            <Cpu size={18} href='#solutions'/> Real-Time Detection
+        <h4 className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4">
+          Capabilities
+        </h4>
+        <ul className="space-y-4 text-sm">
+          <li className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer">
+            <Cpu size={16} className="text-cyan-600" />
+            Real-time detection
           </li>
-          <li className="flex items-center gap-3 hover:text-cyan-400 transition">
-            <Brain size={18} /> Smart Analytics
+          <li className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer">
+            <Brain size={16} className="text-cyan-600" />
+            Smart analytics
           </li>
-          <li className="flex items-center gap-3 hover:text-cyan-400 transition">
-            <Bot size={18} /> AI Model Tuning
+          <li className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer">
+            <Bot size={16} className="text-cyan-600" />
+            AI model tuning
           </li>
         </ul>
       </div>
+
+      {/* Platforms */}
       <div>
-        <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wide">Platforms</h4>
-        <ul className="space-y-3 text-white/80 text-sm">
-          <li className="flex items-center gap-3 hover:text-cyan-400 transition">
-            <Cloud size={18} /> Edge Devices
+        <h4 className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4">
+          Platforms
+        </h4>
+        <ul className="space-y-4 text-sm">
+          <li className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer">
+            <Cloud size={16} className="text-cyan-600" />
+            Edge devices
           </li>
-          <li className="flex items-center gap-3 hover:text-cyan-400 transition">
-            <Cpu size={18} /> Cloud Inference
+          <li className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer">
+            <Cpu size={16} className="text-cyan-600" />
+            Cloud inference
           </li>
-          <li className="flex items-center gap-3 hover:text-cyan-400 transition">
-            <Brain size={18} /> Retail & Smart City
+          <li className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer">
+            <Brain size={16} className="text-cyan-600" />
+            Retail & smart city
           </li>
         </ul>
       </div>
